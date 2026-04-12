@@ -1,0 +1,2 @@
+# netfilxlampa
+theme for lampa
