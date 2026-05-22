@@ -47,20 +47,6 @@
             }
         }
 
-        // ---- Intro Animation ----
-        function showIntro() {
-            var intro = document.createElement('div');
-            intro.className = 'nf-intro';
-            intro.innerHTML = '<div class="nf-intro__text">LAMPA</div>';
-            document.body.appendChild(intro);
-
-            setTimeout(function () {
-                if (intro.parentNode) {
-                    intro.parentNode.removeChild(intro);
-                }
-            }, 3500);
-        }
-
         // ---- Hero Billboard ----
         function createHero() {
             if (heroEl) return heroEl;
@@ -135,7 +121,7 @@
                 overview.textContent = data.overview || '';
 
                 hero.classList.add('visible');
-            }, 600);
+            }, 900);
         }
 
         function hideHero() {
@@ -212,14 +198,11 @@
             overlay.className = 'nf-card-overlay';
 
             var html = '<div class="nf-card-overlay__title">' + escapeHtml(data.title) + '</div>';
-            html += '<div class="nf-card-overlay__meta">';
             if (data.year) {
+                html += '<div class="nf-card-overlay__meta">';
                 html += '<span class="nf-card-overlay__year">' + escapeHtml(data.year) + '</span>';
+                html += '</div>';
             }
-            if (data.vote && data.vote !== '0' && data.vote !== '0.0') {
-                html += '<span>&#9733; ' + escapeHtml(data.vote) + '</span>';
-            }
-            html += '</div>';
 
             overlay.innerHTML = html;
             view.style.position = 'relative';
@@ -309,8 +292,8 @@
                     default: true
                 },
                 field: {
-                    name: Lampa.Lang.translate('netflix_theme_hero') || 'Netflix Hero Banner',
-                    description: Lampa.Lang.translate('netflix_theme_hero_descr') || 'Show hero billboard with backdrop image'
+                    name: Lampa.Lang.translate('netflix_theme_hero') || 'Cinematic Hero',
+                    description: Lampa.Lang.translate('netflix_theme_hero_descr') || 'Show full-screen hero with backdrop image'
                 },
                 onChange: function (val) {
                     Lampa.Storage.set('netflix_hero', val);
@@ -325,8 +308,8 @@
                     default: true
                 },
                 field: {
-                    name: Lampa.Lang.translate('netflix_theme_overlays') || 'Card Overlays',
-                    description: Lampa.Lang.translate('netflix_theme_overlays_descr') || 'Show title and info overlay on focused cards'
+                    name: Lampa.Lang.translate('netflix_theme_overlays') || 'Card Focus Details',
+                    description: Lampa.Lang.translate('netflix_theme_overlays_descr') || 'Show title and year overlay on focused cards'
                 },
                 onChange: function (val) {
                     Lampa.Storage.set('netflix_overlays', val);
@@ -341,8 +324,8 @@
                     default: true
                 },
                 field: {
-                    name: Lampa.Lang.translate('netflix_theme_animations') || 'Row Animations',
-                    description: Lampa.Lang.translate('netflix_theme_animations_descr') || 'Animated entrance for content rows'
+                    name: Lampa.Lang.translate('netflix_theme_animations') || 'Row Motion',
+                    description: Lampa.Lang.translate('netflix_theme_animations_descr') || 'Smooth entrance motion for content rows'
                 },
                 onChange: function (val) {
                     Lampa.Storage.set('netflix_animations', val);
@@ -356,40 +339,40 @@
 
             Lampa.Lang.add({
                 netflix_theme_hero: {
-                    en: 'Netflix Hero Banner',
-                    ru: 'Netflix баннер',
-                    uk: 'Netflix банер',
-                    be: 'Netflix банер'
+                    en: 'Cinematic Hero',
+                    ru: 'Кинематографичный баннер',
+                    uk: 'Кінематографічний банер',
+                    be: 'Кінематаграфічны банер'
                 },
                 netflix_theme_hero_descr: {
-                    en: 'Show hero billboard with backdrop image',
-                    ru: 'Показывать баннер с фоновым изображением',
-                    uk: 'Показувати банер з фоновим зображенням',
-                    be: 'Паказваць банер з фонавым відарысам'
+                    en: 'Show full-screen hero with backdrop image',
+                    ru: 'Показывать полноэкранный баннер с фоновым изображением',
+                    uk: 'Показувати повноекранний банер з фоновим зображенням',
+                    be: 'Паказваць поўнаэкранны банер з фонавым відарысам'
                 },
                 netflix_theme_overlays: {
-                    en: 'Card Overlays',
-                    ru: 'Наложения на карточки',
-                    uk: 'Накладення на картки',
-                    be: 'Накладанні на карткі'
+                    en: 'Card Focus Details',
+                    ru: 'Детали при фокусе',
+                    uk: 'Деталі при фокусі',
+                    be: 'Дэталі пры фокусе'
                 },
                 netflix_theme_overlays_descr: {
-                    en: 'Show title and info overlay on focused cards',
-                    ru: 'Показывать название и информацию на выбранных карточках',
-                    uk: 'Показувати назву та інформацію на вибраних картках',
-                    be: 'Паказваць назву і інфармацыю на абраных картках'
+                    en: 'Show title and year overlay on focused cards',
+                    ru: 'Показывать название и год на выбранной карточке',
+                    uk: 'Показувати назву та рік на вибраній картці',
+                    be: 'Паказваць назву і год на абранай картцы'
                 },
                 netflix_theme_animations: {
-                    en: 'Row Animations',
+                    en: 'Row Motion',
                     ru: 'Анимация строк',
                     uk: 'Анімація рядків',
                     be: 'Анімацыя радкоў'
                 },
                 netflix_theme_animations_descr: {
-                    en: 'Animated entrance for content rows',
-                    ru: 'Анимация появления строк с контентом',
-                    uk: 'Анімація появи рядків з контентом',
-                    be: 'Анімацыя з\'яўлення радкоў з кантэнтам'
+                    en: 'Smooth entrance motion for content rows',
+                    ru: 'Плавная анимация появления строк с контентом',
+                    uk: 'Плавна анімація появи рядків з контентом',
+                    be: 'Плаўная анімацыя з\'яўлення радкоў з кантэнтам'
                 }
             });
         }
@@ -399,7 +382,6 @@
             injectCSS();
             addTranslations();
             addSettings();
-            showIntro();
 
             // Process existing content
             setTimeout(function () {
