@@ -1,19 +1,18 @@
-# Netflix Theme for Lampa TV
+# Cinematic Theme for Lampa TV
 
-A Netflix-inspired dark theme plugin for [Lampa](https://github.com/yumata/lampa-source) media center. Transforms the Lampa interface with Netflix's signature look — dark backgrounds, red accents, smooth animations, and a hero billboard.
+An Apple TV+ inspired theme plugin for [Lampa](https://github.com/yumata/lampa-source) media center. Strips Lampa down to pure black, monochrome focus rings, glass surfaces, refined typography, and a near full-screen cinematic hero.
 
 ## Features
 
-- **Netflix color scheme** — dark `#141414` background with `#E50914` red accents
-- **Hero billboard** — focused content displays a large backdrop banner with title, rating, year, and overview
-- **Card overlays** — Netflix-style info overlay on focused cards with title and metadata
-- **Row animations** — staggered slide-in entrance animations for content rows and cards
-- **Focus effects** — cards scale up with a red glow border on focus, unfocused cards dim slightly
-- **Full UI restyle** — menu, modals, settings, player, search, buttons all themed
-- **Intro animation** — Netflix-style zoom intro on app launch
-- **Settings integration** — toggle hero banner, card overlays, and animations from Lampa settings
-- **Multi-language** — settings labels in English, Russian, Ukrainian, and Belarusian
-- **Responsive** — adapts to mobile, tablet, and TV screen sizes
+- **Monochrome cinematic palette** — pure black `#000` with off-white `#f5f5f7` and translucent whites; no bright accent color
+- **Full-screen hero** — focused content fills 92% of the viewport with backdrop image, large tight-tracked title, and a clean meta row
+- **Glass surfaces** — header, sidebar menu, modals, notifications, and player panel all use `backdrop-filter` blur over translucent dark
+- **Refined card focus** — soft white ring, deep drop shadow, gentle 1.10× scale on focus; unfocused cards stay bright (not dimmed)
+- **Quiet motion** — slow Apple-style easing, shortened row stagger, no splash intro
+- **Pill controls** — buttons, search input, badges, and filters all use rounded pill shapes with white-on-black focus
+- **Settings integration** — toggle the hero, card focus details, and row motion from Lampa settings
+- **Multi-language** — setting labels in English, Russian, Ukrainian, and Belarusian
+- **Responsive** — hero scales from 92vh on desktop, 70vh on tablet, 55vh on mobile
 
 ## Installation
 
@@ -38,8 +37,8 @@ Add the plugin URL in Lampa:
 
 | File | Description |
 |------|-------------|
-| `netflix.js` | Main plugin — injects CSS, creates hero billboard, card overlays, row animations |
-| `style.css` | All theme styles — colors, layout, animations, responsive breakpoints |
+| `netflix.js` | Main plugin — injects CSS, creates the hero billboard, focus overlays, row motion, settings |
+| `style.css` | Theme styles — palette tokens, glass surfaces, motion, responsive breakpoints |
 
 ## Configuration
 
@@ -47,26 +46,30 @@ After installation, go to **Settings** → **Interface** to find these options:
 
 | Setting | Default | Description |
 |---------|---------|-------------|
-| Netflix Hero Banner | On | Large backdrop billboard for focused content |
-| Card Overlays | On | Title/year overlay on card focus |
-| Row Animations | On | Staggered slide-in animation for rows |
+| Cinematic Hero | On | Full-screen backdrop hero for the focused card |
+| Card Focus Details | On | Title + year overlay on focused cards |
+| Row Motion | On | Smooth fade-up entrance for content rows |
 
-## Color Palette
+## Design Tokens
 
-| Color | Hex | Usage |
-|-------|-----|-------|
-| Netflix Red | `#E50914` | Accent, focus borders, buttons, badges |
-| Background | `#141414` | Main background |
-| Surface | `#181818` | Cards, modals, elevated elements |
-| Primary Text | `#FFFFFF` | Headings, titles |
-| Secondary Text | `#E5E5E5` | Body text, descriptions |
-| Dim Text | `#999999` | Metadata, timestamps |
-| Green Accent | `#46D369` | Year badge in overlays |
+| Token | Value | Usage |
+|-------|-------|-------|
+| `--tv-bg` | `#000000` | Main background |
+| `--tv-surface` | `#0a0a0a` | Card surfaces |
+| `--tv-surface-2` | `#161616` | Modals, settings panels |
+| `--tv-text` | `#f5f5f7` | Titles, primary text |
+| `--tv-text-2` | `rgba(255,255,255,0.72)` | Body, descriptions |
+| `--tv-text-dim` | `rgba(255,255,255,0.48)` | Captions, metadata |
+| `--tv-accent` | `#ffffff` | Focus rings, active states |
+| `--tv-accent-soft` | `rgba(255,255,255,0.12)` | Hover/focus tint |
+| `--tv-blur` | `saturate(180%) blur(24px)` | Glass surfaces |
+| `--tv-ease` | `cubic-bezier(0.22, 0.61, 0.36, 1)` | Standard motion |
 
 ## Compatibility
 
 - Lampa 1.x — 3.x
 - Android TV, WebOS 3+, Tizen 4+, Desktop browsers
+- Glass blur falls back gracefully on devices that don't support `backdrop-filter`
 
 ## License
 
